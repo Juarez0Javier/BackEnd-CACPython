@@ -1,0 +1,9 @@
+Consignas de Evaluacion
+    - La base de datos debe desarrollarse en lenguaje SQL (10)
+    - A traves del front se debe poder realizar al menus un tipo de alta (POST) (15)
+    - De la misma forma se debe poder realizr modificaciones de los registros (PUT) (Obligatorio) (15)
+    - Se debe poder acceder a los registrps de la tabla (GET) (15)
+    - Se debe poder realizar el borrado fisico de los datos (DELETE) (Obligatorio) (15)
+    - El trabajo practico debere subirse a un repositorio de Git (Obligatorio) (10)
+    - La página debera subirse a un seervidor on-line para poder ser navegada por el instructor (Opcional) (5)
+    - El backend debera estar integrado con un frontend (15)
