@@ -6,3 +6,6 @@ def index():
             'mensaje': 'Hola Mundo Apis con FLASK'
         }
     )
+
+def kill ():
+    print("Hola")
