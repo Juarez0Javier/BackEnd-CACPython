@@ -9,16 +9,16 @@ load_dotenv()
 
 # Configuración de la base de datos usando variables de entorno
 DATABASE_CONFIG = {
-    'user': os.getenv('DB_USERNAME'),
-    #'user': "postgres",        
-    'password': os.getenv('DB_PASSWORD'),
-    #'password': 43446615,     
-    'host': os.getenv('DB_HOST'),
-    #'host': "127.0.0.1",            
-    'database': os.getenv('DB_NAME'),
-    #'database':"crescendoshop",         
-    'port': os.getenv('DB_PORT', 5432)
-    #'port': "5432"       
+    #'user': os.getenv('DB_USERNAME'),
+    'user': "postgres",        
+    #'password': os.getenv('DB_PASSWORD'),
+    'password': 43446615,     
+    #'host': os.getenv('DB_HOST'),
+    'host': "127.0.0.1",            
+    #'database': os.getenv('DB_NAME'),
+    'database':"crescendoshop",         
+    #'port': os.getenv('DB_PORT', 5432)
+    'port': "5432"       
 }
 
 def test_connection():
@@ -29,26 +29,6 @@ def test_connection():
     cur.close()
 
     print("TEST CONECTION - OK")
-
-def create_table_tareas():
-    conn = psycopg2.connect(**DATABASE_CONFIG)
-    cur = conn.cursor()
-    cur.execute(
-        """
-        CREATE TABLE IF NOT EXISTS Tareas (
-            id SERIAL PRIMARY KEY,
-            nombre VARCHAR(50) NOT NULL,
-            descripcion VARCHAR(300) NOT NULL,
-            fecha_creacion DATE NOT NULL,
-            completada BOOLEAN NOT NULL,
-            activa BOOLEAN NOT NULL
-        );
-        """
-    )
-    conn.commit()
-   
-    cur.close()
-    conn.close()
 
 # Función para obtener la conexión a la base de datos
 def get_db():
