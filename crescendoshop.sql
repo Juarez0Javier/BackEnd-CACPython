@@ -11,7 +11,7 @@ l_name VARCHAR(100) NOT NULL,
 image VARCHAR(100) NOT NULL,
 description VARCHAR(3000) NOT NULL,
 price float NOT NULL,
-stock int DEFAULT 10
+stock int DEFAULT 1
 );
 
 --Subida de los datos--

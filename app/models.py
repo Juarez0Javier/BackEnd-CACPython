@@ -80,6 +80,38 @@ class Product:
     @staticmethod
     def get_by_id(prod_id):
         return Product.__get_product_by_id(prod_id)
+    
+    @staticmethod
+    def save(self):
+        db = get_db()
+        cursor = db.cursor()
+        if self.id: 
+            cursor.execute("""
+                    UPDATE productos
+                    SET nombre = %s, l_name= %s, image = %s, description = %s, price = %s
+                    WHERE id = %s
+                """,
+                (self.name, self.l_name, self.image, self.desc, self.price, self.id))
+
+        else:
+            cursor.execute(
+                """
+                    INSERT INTO tareas
+                    (nombre, l_name, image, description, price)
+                    VALUES (%s, %s, %s, %s, %s)
+                """,
+                (self.name, self.l_name, self.image, self.desc, self.price))
+            self.id = cursor.lastrowid
+        db.commit()
+        cursor.close()
+
+    @staticmethod
+    def set_stock(self,new_stock):
+        db = get_db()
+        cursor = db.cursor()
+        cursor.execute("UPDATE tareas SET stock = %d  WHERE id = %s", (new_stock,self.id_task,))
+        db.commit()
+        cursor.close()
 
     def serialize(self):
         return {
