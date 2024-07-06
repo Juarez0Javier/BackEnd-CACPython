@@ -31,8 +31,8 @@ def post_new_product():
     new_prod.save()
     return jsonify({'message': 'Created successfully'}), 201
 
-def update_product(task_id):
-    product = Product.get_by_id(task_id)
+def update_product(prod_id):
+    product = Product.get_by_id(prod_id)
     if not product:
         return jsonify({'message': 'Not found'}), 404
     data = request.json
@@ -50,11 +50,11 @@ def stock_update(prod_id):
     if not product:
         return jsonify({'message': 'Not found'}), 404
     product.set_stock(product,data["stock"])
-    return
+    return jsonify({'message': 'Stock updated successfully'})
 
 def discontinue(prod_id):
     product = Product.get_product_by_id(prod_id)
     if not product:
         return jsonify({'message': 'Not found'}), 404
     product.set_stock(product,-1)
-    return
+    return jsonify({'message': 'Product discontinued'})
