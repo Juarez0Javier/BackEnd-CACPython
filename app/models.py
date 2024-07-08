@@ -58,7 +58,7 @@ class Product:
     def get_all_prods():
         return Product.__get_products_by_query("""
                                                 SELECT * FROM Productos 
-                                               ORDER BY id
+                                               ORDER BY stock desc, id
                                                """)
 
     @staticmethod
@@ -74,6 +74,14 @@ class Product:
         return Product.__get_products_by_query(""" 
                                                SELECT * FROM Productos 
                                                WHERE stock=0 
+                                               ORDER BY id
+                                               """)
+    
+    @staticmethod
+    def get_discont():
+        return Product.__get_products_by_query(""" 
+                                               SELECT * FROM Productos 
+                                               WHERE stock=-1 
                                                ORDER BY id
                                                """) 
     
@@ -109,7 +117,15 @@ class Product:
     def set_stock(self,new_stock):
         db = get_db()
         cursor = db.cursor()
-        cursor.execute("UPDATE tareas SET stock = %d  WHERE id = %s", (new_stock,self.id_task,))
+        cursor.execute("UPDATE tareas SET stock = %d  WHERE id = %s", (new_stock,self.id,))
+        db.commit()
+        cursor.close()
+
+    @staticmethod
+    def delete(self):
+        db = get_db()
+        cursor = db.cursor()
+        cursor.execute("DELETE tareas WHERE id = %d", (self.id,))
         db.commit()
         cursor.close()
 
@@ -117,7 +133,7 @@ class Product:
         return {
             'id': self.id,
             'nombre':self.name,
-            'long name': self.l_name,
+            'long_name': self.l_name,
             'imagen':self.image,
             'descripcion':self.desc,
             'precio':self.price,

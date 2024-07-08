@@ -13,6 +13,10 @@ def get_all_with_no_stock():
     products = Product.get_no_stock()
     return jsonify([product.serialize() for product in products])
 
+def get_all_discontinued():
+    products = Product.get_discont()
+    return jsonify([product.serialize() for product in products])
+
 def get_product(prod_id):
     product = Product.get_product_by_id(prod_id)
     if not product:
@@ -26,7 +30,8 @@ def post_new_product():
         l_name=data['long name'],
         image=data['imagen'],
         description=data['descripcion'],
-        price=data['precio']
+        price=data['precio'],
+        stock=data['stock']
     )
     new_prod.save()
     return jsonify({'message': 'Created successfully'}), 201
@@ -41,6 +46,7 @@ def update_product(prod_id):
     product.image=data['imagen']
     product.description=data['descripcion']
     product.price=data['precio']
+    product.stock=data['stock']
     product.save()
     return jsonify({'message': 'Updated successfully'})
 
@@ -58,3 +64,10 @@ def discontinue(prod_id):
         return jsonify({'message': 'Not found'}), 404
     product.set_stock(product,-1)
     return jsonify({'message': 'Product discontinued'})
+
+def delete(prod_id):
+    product = Product.get_product_by_id(prod_id)
+    if not product:
+        return jsonify({'message': 'Not found'}), 404
+    product.delete()
+    return jsonify({'message': 'Product deleted'})

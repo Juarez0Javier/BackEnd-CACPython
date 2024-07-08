@@ -1,8 +1,11 @@
 from flask import Flask
+from flask_cors import CORS
 from app.views import *
 from app.database import *
 
 app = Flask(__name__)
+
+CORS(app)
 
 init_app(app)
 
@@ -16,6 +19,9 @@ app.route('/api/products/stock/', methods=['GET'])(get_all__with_stock)
 
 #Get All Products out of Stuck
 app.route('/api/products/no_stock/', methods=['GET'])(get_all_with_no_stock)
+
+#Get All Discontinued Products
+app.route('/api/products/discont/', methods=['GET'])(get_all_discontinued)
 
 #Get Product by ID
 app.route('/api/products/<int:prod_id>', methods=['GET'])(get_product)
@@ -34,6 +40,7 @@ app.route('/api/products/refresh_stock/<int:prod_id>', methods=['PUT'])(stock_up
 #=DELETE=
 #Discontinue Product
 app.route('/api/products/discontinue/<int:prod_id>', methods=['DELETE'])(discontinue)
+app.route('/api/products/delete/<int:prod_id>', methods=['DELETE'])(delete)
 
 if __name__ == '__main__':
     app.run(debug=True)
