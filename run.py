@@ -5,10 +5,6 @@ from app.database import *
 
 app = Flask(__name__)
 
-CORS(app)
-
-init_app(app)
-
 #=GET=
 
 #Get All Products 
@@ -39,8 +35,15 @@ app.route('/api/products/refresh_stock/<int:prod_id>', methods=['PUT'])(stock_up
 
 #=DELETE=
 #Discontinue Product
-app.route('/api/products/discontinue/<int:prod_id>', methods=['DELETE'])(discontinue)
+app.route('/api/products/discont/<int:prod_id>', methods=['DELETE'])(discontinue)
+
+#Delete Physical Data
 app.route('/api/products/delete/<int:prod_id>', methods=['DELETE'])(delete)
+
+
+init_app(app)
+CORS(app,origins="*")
+
 
 if __name__ == '__main__':
     app.run(debug=True)

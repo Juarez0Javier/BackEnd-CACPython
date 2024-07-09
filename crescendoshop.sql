@@ -20,7 +20,7 @@ INSERT INTO Productos (name,l_name,image,description,price,stock)
 	VALUES (
 	'Bajo',
 	'TAGIMA TW-73 BLACK BAJO ELECTRICICO 4 CUERDAS TIPO JAZZBASS', 
-	'../img/prods/bajo.png', 
+	'../img/prods/bajo.jpg', 
 	'El bajo eléctrico (también llamado sencillamente bajo)es un instrumento musical similar en apariencia yconstrucción a la guitarra eléctrica, pero con un cuerpo de mayores dimensiones, un mástil de mayorlongitud y escala y, normalmente, cuatro cuerdas afinadas según la afinación estándar del contrabajo.',
 	480000,
 	0
