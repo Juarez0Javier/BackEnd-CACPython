@@ -11,7 +11,7 @@ l_name VARCHAR(100) NOT NULL,
 image VARCHAR(100) NOT NULL,
 description VARCHAR(1000) NOT NULL,
 price float NOT NULL,
-stock int DEFAULT 1
+stock int DEFAULT 12
 );
 
 --Subida de los datos--
@@ -20,7 +20,7 @@ INSERT INTO Productos (name,l_name,image,description,price,stock)
 	VALUES (
 	'Bajo',
 	'TAGIMA TW-73 BLACK BAJO ELECTRICICO 4 CUERDAS TIPO JAZZBASS', 
-	'../img/prods/bajo.jpg', 
+	'../img/prods/bajo.png', 
 	'El bajo eléctrico (también llamado sencillamente bajo)es un instrumento musical similar en apariencia yconstrucción a la guitarra eléctrica, pero con un cuerpo de mayores dimensiones, un mástil de mayorlongitud y escala y, normalmente, cuatro cuerdas afinadas según la afinación estándar del contrabajo.',
 	480000,
 	0
@@ -36,13 +36,14 @@ INSERT INTO Productos (name,l_name,image,description,price,stock)
 	-1
 );
 
-INSERT INTO Productos (name,l_name,image,description,price)
+INSERT INTO Productos (name,l_name,image,description,price, stock)
 	VALUES (
 	'Cello',
 	'Cello Parquer Majestic Madera',
 	'../img/prods/cello.png', 
 	'Instrumento musical grande y con registros graves en sus notas, además de emitir sonidos potentes y nítidos a la vez y del cual puede llegar a hacer de solista. Debido a las dimensiones que caracteriza a este instrumento, la única forma de ubicarlo es colocarlo entre las rodillas.',
-	240000
+	240000,
+	1
 );
 
 INSERT INTO Productos (name,l_name,image,description,price)
@@ -82,5 +83,6 @@ INSERT INTO Productos (name,l_name,image,description,price)
 );
 
 
-SELECT * FROM Productos
-ORDER BY stock desc, id;
+SELECT * FROM Productos 
+WHERE NOT stock =-1 
+ORDER BY id;
