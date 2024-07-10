@@ -5,8 +5,11 @@ from app.database import *
 
 app = Flask(__name__)
 
-#=GET=
+init_app(app)
 
+CORS(app,origins="*")
+
+#=GET=
 #Get All Products 
 app.route('/api/products/all/', methods=['GET'])(get_all_products)
 
@@ -48,10 +51,6 @@ app.route('/api/products/discont/<int:prod_id>', methods=['DELETE'])(discontinue
 
 #Delete Physical Data
 app.route('/api/products/delete/<int:prod_id>', methods=['DELETE'])(delete)
-
-
-init_app(app)
-CORS(app,origins="*")
 
 
 if __name__ == '__main__':
